@@ -5,6 +5,7 @@ import main.account.BankAccount;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.regex.Pattern;
 
 public class Customer {
 
@@ -27,6 +28,14 @@ public class Customer {
          * Null check, kast exception
          * BankAccount er tilknyttet denne customer
          */
+        if (account == null) {
+            throw new IllegalArgumentException("Account er null");
+        }
+
+        if (account.getOwner() != this) {
+            throw new IllegalArgumentException("Account tilhører ikke denne customer");
+        }
+
         this.accounts.add(account);
     }
 
@@ -44,11 +53,6 @@ public class Customer {
             throw new IllegalArgumentException("Du har ingen accounts");
         }
 
-        if (this.accounts.stream().noneMatch(a -> a == account)) {
-            throw new IllegalArgumentException("Denne account tilhører ikke denne customer");
-        }
-
-        // Alternativt? finder lige ud af det
         if (account.getOwner() != this) {
             throw new IllegalArgumentException("Denne account tilhører ikke denne customer");
         }
@@ -64,8 +68,23 @@ public class Customer {
          *
          * Sætte name til 'null' hvis den ikke opfylder ovenstående
          */
+        Pattern pattern = Pattern.compile("[^a-åA-Å]");
+        boolean willThrow = false;
+        String throwMessage = "";
         if (name == null) {
-            throw new IllegalArgumentException("Navnet er null");
+            willThrow = true;
+            throwMessage = "Navnet er null";
+        } else if (name.length() == 0) {
+            willThrow = true;
+            throwMessage = "Navnet er tom";
+        } else if (pattern.matcher(name).find()) {
+            willThrow = true;
+            throwMessage = "Navnet indeholder specialtegn eller tal";
+        }
+
+        if (willThrow) {
+            this.name = null;
+            throw new IllegalArgumentException(throwMessage);
         }
 
         this.name = name;
