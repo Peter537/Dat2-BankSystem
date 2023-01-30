@@ -17,23 +17,37 @@ public class Customer {
     public Customer(String name, Status status) {
         this.id = idCounter;
         idCounter++;
-        this.name = name;
-        this.status = status;
+        setName(name);
+        setStatus(status);
     }
 
     public void addAccount(BankAccount account) {
+        /*
+         * Null check, kast exception
+         */
         this.accounts.add(account);
     }
 
     public void removeAccount(BankAccount account) {
+        /*
+         * Null check, kast exception
+         * Tjekke du har en account du kan slette
+         * Accounten tilhører dig
+         */
         this.accounts.remove(account);
     }
 
     public void setName(String name) {
+        /*
+         * Ikke indeholder specialtegn, tal, eller er tom
+         */
         this.name = name;
     }
 
     public void setStatus(Status status) {
+        /*
+         * Tjekke at Status er en korrekt status
+         */
         this.status = status;
     }
 

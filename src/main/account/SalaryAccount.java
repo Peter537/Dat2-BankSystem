@@ -10,11 +10,17 @@ public class SalaryAccount extends BankAccount {
 
     @Override
     public void setOwner(Customer owner) {
+        /*
+         * For VIP og ADULT
+         */
         this.owner = owner;
     }
 
     @Override
     public boolean withdraw(double amount) {
+        /*
+         * Tjekke for negativ tal, eller mindre end hvad creditlimit er
+         */
         return false;
     }
 
