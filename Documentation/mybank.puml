@@ -1,0 +1,70 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class BankAccount {
+    # double balance
+    # Customer owner
+    # HashSet<Transactions> transactions
+    + abstract void setOwner(Customer owner)
+    + abstract boolean withdraw(double amount)
+    + int getId()
+    + Transaction getTransactions()
+    + void deposit(double amount)
+    + double getBalance()
+    + Customer getOwner()
+}
+
+class SalaryAccount {
+    - double creditlimit
+    + setCreditlimit(double amount)
+    + getCreditlimit()
+}
+
+class PremiumAccount
+
+class PenguinAccount
+
+class Transaction {
+    - double amount
+    - Timestamp timestamp
+    + double getAmount()
+    + Timestamp getTimestamp()
+}
+
+class Customer {
+   - String name
+   - Status status
+   - int id
+   - ArrayList<BankAccount> accounts
+   + boolean addAccount(BankAccount account)
+   + boolean remove(BankAccount account)
+   + void setName(String name)
+   + void setStatus(Status status)
+   + String getName()
+   + Status getStatus()
+   + int getId()
+}
+
+class Bank {
+    - Map<Integer, BankAccount> accounts
+    - List<Customer> customer
+    + boolean transferMoney(int fromBankAccountID, int toBankAccountID, double amount)
+}
+
+enum Status {
+    CHILD
+    ADULT
+    VIP
+}
+
+BankAccount <|-- PenguinAccount
+BankAccount <|-- SalaryAccount
+BankAccount <|-- PremiumAccount
+
+BankAccount *-- "many" Transaction
+Customer "1"*--* "many"BankAccount
+Customer  *-- "1" Status
+Bank *-- "many" BankAccount
+Bank *-- "many" Customer
+
+@enduml
