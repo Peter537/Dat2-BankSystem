@@ -9,6 +9,7 @@ public class PremiumAccount extends BankAccount {
     @Override
     public void setOwner(Customer owner) {
         /*
+         * Null check, kast exception hvis null
          * Kun for VIP
          */
         this.owner = owner;
@@ -17,7 +18,8 @@ public class PremiumAccount extends BankAccount {
     @Override
     public boolean withdraw(double amount) {
         /*
-         * Tjekke for negativ tal, eller mindre end hvad kontoen har
+         * Tjekke for negativ tal
+         * De kan skylde hvad de vil, de må gerne gå i minus
          */
         return false;
     }

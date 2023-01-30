@@ -9,6 +9,7 @@ public class PenguinAccount extends BankAccount {
     @Override
     public void setOwner(Customer owner) {
         /*
+         * Null check, kast exception hvis null
          * Kun for CHILD
          */
         this.owner = owner;

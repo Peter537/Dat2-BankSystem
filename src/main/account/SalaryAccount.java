@@ -11,6 +11,7 @@ public class SalaryAccount extends BankAccount {
     @Override
     public void setOwner(Customer owner) {
         /*
+         * Null check, kast exception hvis null
          * For VIP og ADULT
          */
         this.owner = owner;
