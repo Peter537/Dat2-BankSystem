@@ -7,13 +7,16 @@ import java.util.ArrayList;
 
 public class Customer {
 
+    private static int idCounter = 1;
     private final int id;
+
     private String name;
     private Status status;
     private final ArrayList<BankAccount> accounts = new ArrayList<>();
 
-    public Customer(int id, String name, Status status) {
-        this.id = id;
+    public Customer(String name, Status status) {
+        this.id = idCounter;
+        idCounter++;
         this.name = name;
         this.status = status;
     }
