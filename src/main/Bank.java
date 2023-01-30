@@ -29,18 +29,32 @@ public class Bank {
     }
 
     public void addCustomer(Customer customer) {
+        /*
+         * Null check
+         */
         this.customers.add(customer);
     }
 
     public void addAccount(BankAccount account) {
+        /*
+         * Null check
+         */
         this.accounts.put(account.getID(), account);
     }
 
     public void removeCustomer(Customer customer) {
+        /*
+         * Null check
+         * Tjekke du har en customer du kan slette
+         */
         this.customers.remove(customer);
     }
 
     public void removeAccount(BankAccount account) {
+        /*
+         * Null check
+         * Tjekke du har en account du kan slette
+         */
         this.accounts.remove(account.getID());
     }
 
