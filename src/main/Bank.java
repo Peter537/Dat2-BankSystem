@@ -19,10 +19,12 @@ public class Bank {
         if (fromAccount == null || toAccount == null) {
             return false;
         }
+
         if (fromAccount.withdraw(amount)) {
             toAccount.deposit(amount);
             return true;
         }
+
         return false;
     }
 }
