@@ -37,7 +37,20 @@ public class Customer {
          * Accounten tilhører dig
          */
         if (account == null) {
-            throw new IllegalArgumentException("Account is null");
+            throw new IllegalArgumentException("Account er null");
+        }
+
+        if (this.accounts.size() == 0) {
+            throw new IllegalArgumentException("Du har ingen accounts");
+        }
+
+        if (this.accounts.stream().noneMatch(a -> a == account)) {
+            throw new IllegalArgumentException("Denne account tilhører ikke denne customer");
+        }
+
+        // Alternativt? finder lige ud af det
+        if (account.getOwner() != this) {
+            throw new IllegalArgumentException("Denne account tilhører ikke denne customer");
         }
 
         this.accounts.remove(account);
@@ -52,7 +65,7 @@ public class Customer {
          * Sætte name til 'null' hvis den ikke opfylder ovenstående
          */
         if (name == null) {
-            throw new IllegalArgumentException("Name is null");
+            throw new IllegalArgumentException("Navnet er null");
         }
 
         this.name = name;
@@ -64,11 +77,13 @@ public class Customer {
          * Tjekke at Status er en korrekt status
          */
         if (status == null) {
-            throw new IllegalArgumentException("Status is null");
+            throw new IllegalArgumentException("Status er null");
         }
+
         if (Arrays.stream(Status.values()).noneMatch(s -> s == status)) {
-            throw new IllegalArgumentException("Status is not a valid status");
+            throw new IllegalArgumentException("Status er ikke en valid status");
         }
+
         this.status = status;
     }
 
