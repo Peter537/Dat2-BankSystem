@@ -18,9 +18,9 @@ public abstract class BankAccount {
     public abstract boolean withdraw(double amount);
 
     public void deposit(double amount) {
-        /*
-         * Tjekke for negativ tal
-         */
+        if (amount < 0) {
+            throw new IllegalArgumentException("Amount must be positive");
+        }
         this.balance += amount;
     }
 
