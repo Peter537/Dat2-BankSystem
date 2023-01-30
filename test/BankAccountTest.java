@@ -19,9 +19,9 @@ public class BankAccountTest {
 
     @BeforeAll
     public void init() {
-        customerVIP = new Customer("Test", Status.VIP);
-        customerAdult = new Customer("Test2", Status.ADULT);
-        customerChild = new Customer("Test3", Status.CHILD);
+        customerVIP = new Customer("VIP", Status.VIP);
+        customerAdult = new Customer("ADULT", Status.ADULT);
+        customerChild = new Customer("CHILD", Status.CHILD);
     }
 
     @Test
