@@ -39,6 +39,7 @@ public class Customer {
 
     public void setName(String name) {
         /*
+         * Null check, kast exception
          * Ikke indeholder specialtegn, tal, eller er tom
          */
         this.name = name;
