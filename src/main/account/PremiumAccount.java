@@ -1,6 +1,7 @@
 package main.account;
 
 import main.entities.Customer;
+import main.enums.Status;
 
 public class PremiumAccount extends BankAccount {
 
@@ -12,6 +13,11 @@ public class PremiumAccount extends BankAccount {
          * Null check, kast exception hvis null
          * Kun for VIP
          */
+        if (owner == null)
+            throw new IllegalArgumentException("Owner cannot be null");
+        if (owner.getStatus() != Status.VIP)
+            throw new IllegalArgumentException("Owner must be VIP");
+
         this.owner = owner;
     }
 
@@ -21,6 +27,9 @@ public class PremiumAccount extends BankAccount {
          * Tjekke for negativ tal
          * De kan skylde hvad de vil, de må gerne gå i minus
          */
-        return false;
+        if (amount < 0)
+            return false;
+        balance -= amount;
+        return true;
     }
 }
