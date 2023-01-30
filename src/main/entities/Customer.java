@@ -4,6 +4,7 @@ import main.enums.Status;
 import main.account.BankAccount;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Customer {
 
@@ -35,6 +36,10 @@ public class Customer {
          * Tjekke du har en account du kan slette
          * Accounten tilhører dig
          */
+        if (account == null) {
+            throw new IllegalArgumentException("Account is null");
+        }
+
         this.accounts.remove(account);
     }
 
@@ -46,6 +51,10 @@ public class Customer {
          *
          * Sætte name til 'null' hvis den ikke opfylder ovenstående
          */
+        if (name == null) {
+            throw new IllegalArgumentException("Name is null");
+        }
+
         this.name = name;
     }
 
@@ -54,6 +63,12 @@ public class Customer {
          * Null check, kast exception
          * Tjekke at Status er en korrekt status
          */
+        if (status == null) {
+            throw new IllegalArgumentException("Status is null");
+        }
+        if (Arrays.stream(Status.values()).noneMatch(s -> s == status)) {
+            throw new IllegalArgumentException("Status is not a valid status");
+        }
         this.status = status;
     }
 
