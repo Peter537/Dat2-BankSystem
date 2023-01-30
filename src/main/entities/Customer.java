@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Customer {
 
-    private static int idCounter = 1;
+    private static int idCounter = 0;
     private final int id;
 
     private String name;
@@ -15,10 +15,10 @@ public class Customer {
     private final ArrayList<BankAccount> accounts = new ArrayList<>();
 
     public Customer(String name, Status status) {
-        this.id = idCounter;
         idCounter++;
-        setName(name);
-        setStatus(status);
+        this.id = idCounter;
+        this.setName(name);
+        this.setStatus(status);
     }
 
     public void addAccount(BankAccount account) {
