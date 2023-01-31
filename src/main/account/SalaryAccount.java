@@ -29,7 +29,7 @@ public class SalaryAccount extends BankAccount {
          */
         if (amount < 0)
             return false;
-        if ((this.balance - amount) > this.creditLimit)
+        if ((this.balance - amount) < this.creditLimit)
             return false;
         balance -= amount;
         return true;
