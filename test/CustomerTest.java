@@ -28,14 +28,12 @@ public class CustomerTest {
 
     @Test
     public void testCustomerStatus() {
-        customer.addAccount(new SalaryAccount());
         assertEquals(Status.ADULT, customer.getStatus());
     }
 
     @Test
     public void testRemoveAccount() {
         BankAccount account = new SalaryAccount();
-        customer.addAccount(account);
         assertThrows(IllegalArgumentException.class, () -> customer.removeAccount(account));
         assertThrows(IllegalArgumentException.class, () -> customer.removeAccount(account));
     }
@@ -48,7 +46,6 @@ public class CustomerTest {
     @Test
     public void testAddAccount() {
         BankAccount account = new SalaryAccount();
-        customer.addAccount(account);
         assertThrows(IllegalArgumentException.class, () -> customer.addAccount(account));
         assertThrows(IllegalArgumentException.class, () -> customer.addAccount(null));
     }
