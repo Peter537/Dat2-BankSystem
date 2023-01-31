@@ -125,13 +125,6 @@ public class BankAccountTest {
 
     @Test
     public void testSalaryAccountWithdraw() {
-        /*
-         * Denne metode fejler ved koden:
-         *     if (amount > this.creditLimit)
-         *         return false;
-         *
-         * Amount vil altid være større end creditLimit, det skal være: (this.balance - amount) > this.creditLimit
-         */
         SalaryAccount bankAccount = new SalaryAccount();
         bankAccount.setCreditLimit(-100);
         bankAccount.deposit(100);
