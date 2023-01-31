@@ -135,8 +135,7 @@ public class BankAccountTest {
         SalaryAccount bankAccount = new SalaryAccount();
         bankAccount.setCreditLimit(-100);
         bankAccount.deposit(100);
-        boolean b = bankAccount.withdraw(50);
-        System.out.println(b);
+        bankAccount.withdraw(50);
         assertEquals(50, bankAccount.getBalance());
     }
 
