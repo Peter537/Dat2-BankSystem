@@ -30,7 +30,7 @@ public class TransferTest {
         bank.addAccount(account1);
         bank.addAccount(account2);
 
-        assertTrue(bank.transferMoney(account1.getID(), account2.getID(), 500));
+        assertTrue(bank.transferMoney(account1, account2, 500));
     }
 
     @Test
@@ -54,6 +54,6 @@ public class TransferTest {
         bank.addAccount(account1);
         bank.addAccount(account2);
 
-        assertFalse(bank.transferMoney(account1.getID(), account2.getID(), 1500));
+        assertFalse(bank.transferMoney(account1, account2, 1500));
     }
 }
