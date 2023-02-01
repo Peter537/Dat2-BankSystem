@@ -1,3 +1,4 @@
+import main.Bank;
 import main.account.BankAccount;
 import main.account.PenguinAccount;
 import main.account.PremiumAccount;
@@ -22,6 +23,15 @@ public class BankAccountTest {
         customerVIP = new Customer("VIP", Status.VIP);
         customerAdult = new Customer("ADULT", Status.ADULT);
         customerChild = new Customer("CHILD", Status.CHILD);
+    }
+
+    @Test
+    public void testBankAccountID() {
+        BankAccount bankAccount = new PenguinAccount();
+        assertEquals(1, bankAccount.getID());
+        BankAccount bankAccount2 = new SalaryAccount();
+        assertNotEquals(bankAccount.getID(), bankAccount2.getID());
+        assertEquals(2, bankAccount2.getID());
     }
 
     @Test
