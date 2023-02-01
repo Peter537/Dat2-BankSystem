@@ -5,8 +5,7 @@ import main.entities.Customer;
 import main.enums.Status;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TransferTest {
 
@@ -55,5 +54,11 @@ public class TransferTest {
         bank.addAccount(account2);
 
         assertFalse(bank.transferMoney(account1, account2, 1500));
+    }
+
+    @Test
+    public void testTransferWithNullAccount() {
+        Bank bank = new Bank();
+        assertThrows(IllegalArgumentException.class, () -> bank.transferMoney(null, null, 500));
     }
 }

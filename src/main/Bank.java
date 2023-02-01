@@ -15,7 +15,7 @@ public class Bank {
 
     public boolean transferMoney(BankAccount fromAccount, BankAccount toAccount, double amount) {
         if (fromAccount == null || toAccount == null) {
-            return false;
+            throw new IllegalArgumentException("En Account er null");
         }
 
         if (fromAccount.withdraw(amount)) {
