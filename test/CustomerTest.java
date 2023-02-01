@@ -10,11 +10,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CustomerTest {
-    Customer customer;
+
+    private Customer customer;
+
     @BeforeAll
     public void init() {
         customer = new Customer("Test", Status.ADULT);
     }
+
     @Test
     public void testCustomerID() {
         assertEquals(1, customer.getID());
