@@ -7,11 +7,17 @@ import java.util.HashSet;
 
 public abstract class BankAccount {
 
+    protected static int idCounter = 1;
+    protected final int id;
+
     protected double balance;
     protected Customer owner;
     protected HashSet<Transaction> transactions = new HashSet<>();
 
-    public BankAccount() { }
+    public BankAccount() {
+        this.id = idCounter;
+        idCounter++;
+    }
 
     public abstract void setOwner(Customer owner);
 
@@ -25,7 +31,7 @@ public abstract class BankAccount {
     }
 
     public int getID() {
-        return this.owner.getID();
+        return this.id;
     }
 
     public double getBalance() {
