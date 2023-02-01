@@ -6,8 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CustomerTest {
@@ -34,7 +33,9 @@ public class CustomerTest {
     @Test
     public void testRemoveAccount() {
         BankAccount account = new SalaryAccount();
-        assertThrows(IllegalArgumentException.class, () -> customer.removeAccount(account));
+        account.setOwner(customer);
+        customer.addAccount(account);
+        assertDoesNotThrow(() -> customer.removeAccount(account));
         assertThrows(IllegalArgumentException.class, () -> customer.removeAccount(account));
     }
 
