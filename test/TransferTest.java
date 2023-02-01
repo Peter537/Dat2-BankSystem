@@ -5,10 +5,10 @@ import main.entities.Customer;
 import main.enums.Status;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TransferTest {
+
     @Test
     public void testTransfer() {
         Bank bank = new Bank();
