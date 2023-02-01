@@ -13,11 +13,9 @@ public class Bank {
 
     public Bank() { }
 
-    public boolean transferMoney(int fromBankAccountID, int toBankAccountID, double amount) {
-        BankAccount fromAccount = this.accounts.getOrDefault(fromBankAccountID, null);
-        BankAccount toAccount = this.accounts.getOrDefault(toBankAccountID, null);
+    public boolean transferMoney(BankAccount fromAccount, BankAccount toAccount, double amount) {
         if (fromAccount == null || toAccount == null) {
-            return false;
+            throw new IllegalArgumentException("En Account er null");
         }
 
         if (fromAccount.withdraw(amount)) {
