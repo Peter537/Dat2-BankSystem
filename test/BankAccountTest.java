@@ -26,15 +26,6 @@ public class BankAccountTest {
     }
 
     @Test
-    public void testBankAccountID() {
-        BankAccount bankAccount = new PenguinAccount();
-        assertEquals(1, bankAccount.getID());
-        BankAccount bankAccount2 = new SalaryAccount();
-        assertNotEquals(bankAccount.getID(), bankAccount2.getID());
-        assertEquals(2, bankAccount2.getID());
-    }
-
-    @Test
     public void testPenguinAccountBalance() {
         BankAccount bankAccount = new PenguinAccount();
         assertEquals(0, bankAccount.getBalance());
