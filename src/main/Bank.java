@@ -18,6 +18,10 @@ public class Bank {
             throw new IllegalArgumentException("En Account er null");
         }
 
+        if (amount < 0) {
+            throw new IllegalArgumentException("Beløbet er negativt");
+        }
+
         if (fromAccount.withdraw(amount)) {
             toAccount.deposit(amount);
             return true;
