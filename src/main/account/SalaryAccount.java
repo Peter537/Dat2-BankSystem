@@ -9,16 +9,29 @@ public class SalaryAccount extends BankAccount {
 
     public SalaryAccount() { }
 
+    public SalaryAccount(Customer owner) {
+        this.setOwner(owner);
+    }
+
+    public SalaryAccount(Customer customer, double creditLimit) {
+        this.setOwner(customer);
+        this.creditLimit = creditLimit;
+    }
+
     @Override
     public void setOwner(Customer owner) {
         /*
          * Null check, kast exception hvis null
          * For VIP og ADULT
          */
-        if (owner == null)
+        if (owner == null) {
             throw new IllegalArgumentException("Owner cannot be null");
-        if (owner.getStatus() != Status.VIP && owner.getStatus() != Status.ADULT)
+        }
+
+        if (owner.getStatus() != Status.VIP && owner.getStatus() != Status.ADULT) {
             throw new IllegalArgumentException("Owner must be VIP or ADULT");
+        }
+
         this.owner = owner;
     }
 
@@ -27,11 +40,15 @@ public class SalaryAccount extends BankAccount {
         /*
          * Tjekke for negativ tal, eller mindre end hvad creditlimit er
          */
-        if (amount < 0)
+        if (amount < 0) {
             return false;
-        if ((this.balance - amount) < this.creditLimit)
+        }
+
+        if ((this.balance - amount) < this.getCreditLimit()) {
             return false;
-        balance -= amount;
+        }
+
+        this.balance -= amount;
         return true;
     }
 
