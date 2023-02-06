@@ -1,6 +1,7 @@
 package main.account;
 
 import main.entities.Customer;
+import main.entities.Transaction;
 import main.enums.Status;
 
 public class PremiumAccount extends BankAccount {
@@ -38,6 +39,7 @@ public class PremiumAccount extends BankAccount {
             return false;
         }
 
+        this.transactions.add(new Transaction(amount));
         this.balance -= amount;
         return true;
     }
