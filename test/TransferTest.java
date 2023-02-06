@@ -17,17 +17,11 @@ public class TransferTest {
         bank.addCustomer(customer1);
         bank.addCustomer(customer2);
 
-        BankAccount account1 = new SalaryAccount();
-        BankAccount account2 = new SalaryAccount();
-
-        account1.setOwner(customer1);
-        account2.setOwner(customer2);
+        BankAccount account1 = new SalaryAccount(customer1);
+        BankAccount account2 = new SalaryAccount(customer2);
 
         account1.deposit(1000);
         account2.deposit(1000);
-
-        bank.addAccount(account1);
-        bank.addAccount(account2);
 
         assertTrue(bank.transferMoney(account1, account2, 500));
     }
@@ -41,17 +35,11 @@ public class TransferTest {
         bank.addCustomer(customer1);
         bank.addCustomer(customer2);
 
-        BankAccount account1 = new SalaryAccount();
-        BankAccount account2 = new SalaryAccount();
-
-        account1.setOwner(customer1);
-        account2.setOwner(customer2);
+        BankAccount account1 = new SalaryAccount(customer1);
+        BankAccount account2 = new SalaryAccount(customer2);
 
         account1.deposit(1000);
         account2.deposit(1000);
-
-        bank.addAccount(account1);
-        bank.addAccount(account2);
 
         assertFalse(bank.transferMoney(account1, account2, 1500));
     }
@@ -65,17 +53,11 @@ public class TransferTest {
         bank.addCustomer(customer1);
         bank.addCustomer(customer2);
 
-        BankAccount account1 = new SalaryAccount();
-        BankAccount account2 = new SalaryAccount();
-
-        account1.setOwner(customer1);
-        account2.setOwner(customer2);
+        BankAccount account1 = new SalaryAccount(customer1);
+        BankAccount account2 = new SalaryAccount(customer2);
 
         account1.deposit(1000);
         account2.deposit(1000);
-
-        bank.addAccount(account1);
-        bank.addAccount(account2);
 
         assertFalse(bank.transferMoney(account1, account2, -500));
     }
