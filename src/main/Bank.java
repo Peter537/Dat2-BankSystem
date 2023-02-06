@@ -31,6 +31,10 @@ public class Bank extends Observable {
         /*
          * Null check
          */
+        if (customer == null) {
+            throw new IllegalArgumentException("Customer cannot be null");
+        }
+
         this.customers.add(customer);
     }
 
@@ -39,6 +43,18 @@ public class Bank extends Observable {
          * Null check
          * Tjekke du har en customer du kan slette
          */
+        if (customer == null) {
+            throw new IllegalArgumentException("Customer kan ikke være null");
+        }
+
+        if (this.customers.size() == 0) {
+            throw new IllegalArgumentException("Der er ingen customers");
+        }
+
+        if (!this.customers.contains(customer)) {
+            throw new IllegalArgumentException("Denne customer findes ikke");
+        }
+
         this.customers.remove(customer);
     }
 
