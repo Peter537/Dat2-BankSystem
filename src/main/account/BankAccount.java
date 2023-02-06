@@ -28,6 +28,7 @@ public abstract class BankAccount {
             throw new IllegalArgumentException("Amount must be positive");
         }
         this.balance += amount;
+        this.transactions.add(new Transaction(amount));
     }
 
     public int getID() {
@@ -44,5 +45,13 @@ public abstract class BankAccount {
 
     public HashSet<Transaction> getTransactions() {
         return this.transactions;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) return true;
+        if (o == null || o.getClass() != this.getClass()) return false;
+        BankAccount other = (BankAccount) o;
+        return this.id == other.id;
     }
 }
