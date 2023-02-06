@@ -4,9 +4,9 @@ import main.account.BankAccount;
 import main.entities.Customer;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Observable;
 
-public class Bank {
+public class Bank extends Observable {
 
     private final ArrayList<Customer> customers = new ArrayList<>();
 
@@ -19,6 +19,8 @@ public class Bank {
 
         if (fromAccount.withdraw(amount)) {
             toAccount.deposit(amount);
+            this.setChanged();
+            this.notifyObservers(amount);
             return true;
         }
 
