@@ -71,10 +71,6 @@ public class Bank {
         }
     }
 
-    public ArrayList<Customer> getCustomers() {
-        return this.customers;
-    }
-
     public void addObserver(CustomerObserver observer) {
         /*
          * Null check
