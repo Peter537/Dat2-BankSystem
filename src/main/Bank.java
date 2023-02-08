@@ -2,13 +2,14 @@ package main;
 
 import main.account.BankAccount;
 import main.entities.Customer;
+import main.observer.CustomerObserver;
 
 import java.util.ArrayList;
-import java.util.Observable;
 
-public class Bank extends Observable {
+public class Bank {
 
     private final ArrayList<Customer> customers = new ArrayList<>();
+    private final ArrayList<CustomerObserver> observers = new ArrayList<>();
 
     public Bank() { }
 
@@ -19,8 +20,6 @@ public class Bank extends Observable {
 
         if (fromAccount.withdraw(amount)) {
             toAccount.deposit(amount);
-            this.setChanged();
-            this.notifyObservers(amount);
             return true;
         }
 
@@ -35,7 +34,14 @@ public class Bank extends Observable {
             throw new IllegalArgumentException("Customer cannot be null");
         }
 
-        this.customers.add(customer);
+        boolean added = this.customers.add(customer);
+        if (!added) {
+            return;
+        }
+
+        for (CustomerObserver observer : this.observers) {
+            observer.onCustomerAdded(customer);
+        }
     }
 
     public void removeCustomer(Customer customer) {
@@ -55,10 +61,48 @@ public class Bank extends Observable {
             throw new IllegalArgumentException("Denne customer findes ikke");
         }
 
-        this.customers.remove(customer);
+        boolean removed = this.customers.remove(customer);
+        if (!removed) {
+            return;
+        }
+
+        for (CustomerObserver observer : this.observers) {
+            observer.onCustomerRemoved(customer);
+        }
     }
 
     public ArrayList<Customer> getCustomers() {
         return this.customers;
+    }
+
+    public void addObserver(CustomerObserver observer) {
+        /*
+         * Null check
+         */
+        if (observer == null) {
+            throw new IllegalArgumentException("Observer kan ikke være null");
+        }
+
+        this.observers.add(observer);
+    }
+
+    public void removeObserver(CustomerObserver observer) {
+        /*
+         * Null check
+         * Tjekke du har en observer du kan slette
+         */
+        if (observer == null) {
+            throw new IllegalArgumentException("Observer kan ikke være null");
+        }
+
+        if (this.observers.size() == 0) {
+            throw new IllegalArgumentException("Der er ingen observers");
+        }
+
+        if (!this.observers.contains(observer)) {
+            throw new IllegalArgumentException("Denne observer findes ikke");
+        }
+
+        this.observers.remove(observer);
     }
 }
